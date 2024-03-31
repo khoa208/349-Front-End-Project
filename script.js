@@ -1,6 +1,6 @@
 const questions = [
-  { question: "1. What is 2 + 2?", options: ["2", "3", "4", "5"], correct: 2, answered: false },
-  { question: "2. What is the capital of France?", options: ["Paris", "London", "Berlin", "Madrid"], correct: 0, answered: false },
+  { question: "1. What is capital of Canada?", options: ["Quabec", "Ottawa", "Toronto", "Victoria"], correct: 1, answered: false },
+  { question: "2. What is the capital of Australia?", options: ["Canberra", "Sydney", "Melbourne", "Darwin"], correct: 0, answered: false },
   { question: "3. Which of the following is not an organ in the human body?", options: ["Pancreas", "Gallbaldeer", "Ulna", "Eye"], correct: 2, answered: false},
   { question: "4. What is the main ingredient of mince pie?", options: ["Cherries", "Dried fuit", "Rhubarb", "Pork"], correct: 1, answered: false },
   { question: "5. A squid has ___ an octopus?", options: ["Less arms than", "The same amount of arms as", "More arms than", "None of the above is correct"], correct: 2, answered: false },
@@ -8,7 +8,7 @@ const questions = [
   { question: "7. In what year was the Berlin Wall torn down?", options: ["1981", "1986", "1989", "1991"], correct: 2, answered: false },
   { question: "8. In the song 'Tik Tok', Kesha kicks dudes to the burb unless they look like which musician?", options: ["John Mayer", "James Taylor", "Steven Tyler", "Mick Jagger"], correct: 3, answered: false },
   { question: "9. Which of the following is not a literary bear?", options: ["Clifford", "Corduroy", "Winnie the Pooh", "Paddington"], correct: 0, answered: false },
-  { question: "10. Which South American country has the capital city of Quito", options: ["Colombia", "Ecuador", "Paraguay", "Guyana"], correct: 1, answered: false },
+  { question: "10. Which South American country has the capital city of Quito?", options: ["Colombia", "Ecuador", "Paraguay", "Guyana"], correct: 1, answered: false },
 
 ];
 
@@ -38,16 +38,21 @@ function displayQuestion() {
 
 function checkAnswer(selected) {
   const correct = questions[currentQuestionIndex].correct;
-  if (correct === selected) {correctCount++;}
-  document.getElementById("result").innerText = selected === correct ? "Correct!" : "Wrong!";
-  if (currentQuestionIndex < questions.length - 1) {
+  if (correct === selected) {
+    correctCount++;
+    document.getElementById("result").innerText = "Correct!";
+  } else {
+    document.getElementById("result").innerText = "Wrong!";
+  }
+
+  if (currentQuestionIndex < questions.length) {
     document.getElementById("next-button").style.display = 'block';
   }
 }
 
 document.getElementById("next-button").onclick = () => {
   currentQuestionIndex++;
-  if (currentQuestionIndex < questions.length - 1 ) {
+  if (currentQuestionIndex < questions.length) {
     displayQuestion();
     document.getElementById("result").innerHTML = "";
     document.getElementById("next-button").style.display = 'none';
@@ -58,9 +63,7 @@ document.getElementById("next-button").onclick = () => {
       btn.classList.remove('disabled');
     });
   } else {
-    document.getElementById("quiz-container").innerHTML = "<h1>Quiz Completed!</h1><div id='result'>Your result: / CORRECT answers</div><";
-    
-    // Here you can add more logic to calculate and display the final score
+    document.getElementById("quiz-container").innerHTML = `<h1>Quiz Completed!</h1><div id='result'>Your final score is ${correctCount}/${questions.length}.</div><br><div><button id="main-menu-btn" class="option" onclick="window.location.href='main.html';">Main menu</button></div>`;
   }
 };
 

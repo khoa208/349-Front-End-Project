@@ -1,2 +1,3 @@
 # 349 Front-End Project
- CSUF
+
+start the program by running "Main.html" file.
