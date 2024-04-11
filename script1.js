@@ -68,3 +68,4 @@ document.getElementById("next-button").onclick = () => {
 };
 
 displayQuestion();
+
